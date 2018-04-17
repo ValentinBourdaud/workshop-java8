@@ -19,10 +19,9 @@ public class Method_01_Test {
 
         public default int sumAge(){
         	int sum=0;
-        	int i=0;
-        	for(i=0;i<findAll().size();i++){
-        	sum = sum+Person.getAge();	
-        	}
+ 
+        	for(int i=0;i<findAll().size();i++){
+        	sum = sum +findAll().get(i).getAge();}
 			return sum;
         }
         // TODO créer une méthode int sumAge()
@@ -55,9 +54,10 @@ public class Method_01_Test {
 
         DaoA daoA = new DaoA();
 
+        daoA.sumAge();
         // TODO invoquer la méthode sumAge pour que le test soit passant
         int result = 0;
-
+        result= daoA.sumAge();
         assertThat(result, is(210));
     }
 
@@ -66,8 +66,9 @@ public class Method_01_Test {
 
         DaoB daoB = new DaoB();
 
-        // TODO invoquer la méthode sumAge pour que le test soit passant
+        daoB.sumAge();// TODO invoquer la méthode sumAge pour que le test soit passant
         int result = 0;
+        result= daoB.sumAge();
 
         assertThat(result, is(5050));
 

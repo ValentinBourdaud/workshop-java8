@@ -14,10 +14,17 @@ import static org.junit.Assert.*;
  */
 public class Method_01_Test {
 
-    // tag::IDao[]
     interface IDao {
         List<Person> findAll();
 
+        public default int sumAge(){
+        	int sum=0;
+        	int i=0;
+        	for(i=0;i<findAll().size();i++){
+        	sum = sum+Person.getAge();	
+        	}
+			return sum;
+        }
         // TODO créer une méthode int sumAge()
         // TODO Cette méthode retourne le résultat de l'addition des ages des personnes
     }

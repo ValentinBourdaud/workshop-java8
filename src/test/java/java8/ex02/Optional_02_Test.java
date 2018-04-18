@@ -27,15 +27,13 @@ public class Optional_02_Test {
 
         Person jules = new Person("Hugues", "Jules", 30, "pass");
 
-        // TODO encapsuler la valeur jules dans un type Optional
-        // TODO utiliser la méthode "of"
-        Optional<Person> julesOpt = null;
+        Optional<Person> julesOpt = Optional.of(jules);
 
         // TODO appliquer la méthode "filter" à julesOpt avec le prédicat "adult"
-        Optional<Person> adultPerson = null;
+        Optional<Person> adultPerson = julesOpt.filter(adult);
 
         // TODO appliquer la méthode "filter" à julesOpt avec le prédicat "aged"
-        Optional<Person> agedPerson = null;
+        Optional<Person> agedPerson = julesOpt.filter(aged);
 
         assertThat(adultPerson.isPresent(), is(true));
         assertThat(agedPerson.isPresent(), is(false));
@@ -47,10 +45,10 @@ public class Optional_02_Test {
 
         // TODO encapsuler la valeur jules dans un type Optional
         // TODO utiliser la méthode "of"
-        Optional<Person> julesOpt = null;
+        Optional<Person> julesOpt = Optional.of(jules);
 
         // TODO récupérer l'age de jules via la méthode "map"
-        Optional<Integer> julesAge = null;
+        Optional<Integer> julesAge = julesOpt.map(e ->e.getAge());
 
         assertThat(julesAge.isPresent(), is(true));
         assertThat(julesAge.get(), is(30));
@@ -61,13 +59,14 @@ public class Optional_02_Test {
     public void test_optional_ifPresent() throws Exception {
         Person jules = new Person("Hugues", "Jules", 30, "pass");
 
-        // TODO encapsuler la valeur jules dans un type Optional
-        // TODO utiliser la méthode "of"
-        Optional<Person> julesOpt = null;
+        Optional<Person> julesOpt = Optional.of(jules);
+        
+        julesOpt.filter(adult).map(t->t.getAge());
 
-        // TODO appliquer la méthode "filter" à julesOpt avec le prédicat "adult"
-        // TODO chaîner avec la méthode "map" pour récupérer l'age
-        // TODO utiliser la méthode isPresent pour vérifier que l'age est bien 30, déclencher l'exception GoodException pour valider que la fonction en paramètre de ifPresent a bien été exécutée.
-        // julesOpt.filter...;
+        		
+       julesOpt.filter(adult).map(t->t.getAge()).ifPresent(t-> {
+        	if(t==30)
+        	throw new GoodException();});
+
     }
 }
